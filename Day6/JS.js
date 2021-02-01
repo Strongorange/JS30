@@ -12,7 +12,7 @@ fetch(endpoint)
 function findMatches(wordToMatch, cities) {
   return cities.filter((place) => {
     //here we need to figure out if the city or state matches that was searched
-    const regex = new RegExp(wordToMatch, "gi"); //RegExp가 뭐야?
+    const regex = new RegExp(wordToMatch, "gi"); //RegExp가 뭐야? 정규표현식
     return place.city.match(regex) || place.state.match(regex);
   });
 }
