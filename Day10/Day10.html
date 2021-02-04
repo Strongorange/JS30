@@ -94,24 +94,23 @@
 
     <script>
       const checkBoxes = document.querySelectorAll("input");
-
       let lastChecked;
 
       function handleClick(e) {
-        let inBetween = false;
+        let isChecked = false;
         if (e.shiftKey && this.checked) {
           checkBoxes.forEach((checkBox) => {
             console.log(checkBox);
-            if (checkBox === this || checkBox === lastChecked) {
-              inBetween = !inBetween;
-              console.log("체크시작");
+            if (checkBox === lastChecked || checkBox === this) {
+              console.log("플래그 바뀜");
+              isChecked = !isChecked;
             }
-
-            if (inBetween) {
+            if (isChecked) {
               checkBox.checked = true;
             }
           });
         }
+
         lastChecked = this;
       }
 
