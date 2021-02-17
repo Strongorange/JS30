@@ -9,7 +9,7 @@ slider.addEventListener("mousedown", (e) => {
   startX = e.pageX - slider.offsetLeft;
   scrollLeft = slider.scrollLeft;
 });
-slider.addEventListener("mouseleave", () => {
+slider.addEventListener("mous (eleave", () => {
   isDown = false;
   slider.classList.remove("active");
 });
