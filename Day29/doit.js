@@ -2,9 +2,13 @@ let countdown;
 const timerDisplay = document.querySelector(".display__time-left");
 const endTime = document.querySelector(".display__end-time");
 const buttons = document.querySelectorAll("[data-time");
+const alarm = document.querySelector(".alarm-audio");
+const stopButton = document.querySelector(".stop__button");
 
 function timer(seconds) {
   clearInterval(countdown);
+  alarm.pause();
+  alarm.currentTime = 0;
   const now = Date.now();
   const then = now + seconds * 1000; //끝나는 시간
   const startTime = Math.round((then - now) / 1000);
@@ -13,6 +17,17 @@ function timer(seconds) {
   displayEndTime(then);
   countdown = setInterval(() => {
     const secondsLeft = Math.round((then - Date.now()) / 1000);
+    if (secondsLeft < 0) {
+      stopButton.classList.add("active");
+      alarm.play();
+      alarm.currentTime = 5;
+      clearInterval(countdown);
+      return;
+    }
+
+    if (secondsLeft > 0) {
+      stopButton.classList.remove("active");
+    }
     displayTime(secondsLeft);
   }, 1000);
 }
@@ -43,3 +58,4 @@ function enterMinutes(e) {
 
 buttons.forEach((button) => button.addEventListener("click", clickTimer));
 document.customForm.addEventListener("submit", enterMinutes);
+stopButton.addEventListener("click", () => alarm.pause());

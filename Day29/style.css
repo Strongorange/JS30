@@ -76,9 +76,36 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 .display__end-time {
   font-size: 4rem;
   color: white;
+}
+
+.stop__button {
+  visibility: hidden;
+  transition: opacity 1s;
+  opacity: 0;
+}
+
+.stop__button.active {
+  visibility: visible;
+  width: 100px;
+  height: 50px;
+  color: white;
+  background: transparent;
+  border: 1px solid #3871a7;
+  border-radius: 30px;
+  font-size: 26px;
+  opacity: 1;
+}
+
+.stop__button:hover {
+  cursor: pointer;
+}
+
+.stop__button:focus {
+  outline: none;
 }
