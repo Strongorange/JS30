@@ -69,3 +69,25 @@ h1 {
 .hole.up .mole {
   top: 0;
 }
+
+.gamestart {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.gamestart-button {
+  font-size: 8rem;
+  font-family: "Amatic SC", cursive;
+  font-weight: 700;
+  background: transparent;
+  border: none;
+}
+
+.gamestart-button:hover {
+  cursor: pointer;
+}
+
+.gamestart-button:focus {
+  outline: none;
+}
