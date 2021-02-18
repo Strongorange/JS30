@@ -46,7 +46,8 @@ h1 {
 
 .hole:after {
   display: block;
-  background: url(dirt.svg) bottom center no-repeat;
+  background: url("https://raw.githubusercontent.com/wesbos/JavaScript30/ce2c7e630b0de1b63f4380888dcd529db7e711f1/30%20-%20Whack%20A%20Mole/dirt.svg")
+    bottom center no-repeat;
   background-size: contain;
   content: "";
   width: 100%;
@@ -57,7 +58,8 @@ h1 {
 }
 
 .mole {
-  background: url("mole.svg") bottom center no-repeat;
+  background: url("https://raw.githubusercontent.com/wesbos/JavaScript30/ce2c7e630b0de1b63f4380888dcd529db7e711f1/30%20-%20Whack%20A%20Mole/mole.svg")
+    bottom center no-repeat;
   background-size: 60%;
   position: absolute;
   top: 100%;
