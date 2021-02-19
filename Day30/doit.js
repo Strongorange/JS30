@@ -51,6 +51,9 @@ function startGame() {
       highScoreBoard.textContent = highScore;
     }
   }, 7000);
+  setTimeout(() => {
+    scoreBoard.textContent = "0";
+  }, 7600);
 }
 
 function bonk(e) {
