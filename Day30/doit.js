@@ -163,6 +163,7 @@ function changeDifficulty(e) {
 function init() {
   highScoreBoard.textContent = localStorage.getItem("highScore");
   console.log(localStorage.getItem("highScore"));
+  highScoreBoard.textContent = 0;
 }
 
 moles.forEach((mole) => mole.addEventListener("click", bonk));

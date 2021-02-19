@@ -108,6 +108,7 @@ h1 {
   border: none;
   width: 170px;
   margin: -20px 0px 0px 0px;
+  text-align: center;
 }
 
 .gamestart-button:hover {
