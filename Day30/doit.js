@@ -4,11 +4,16 @@ const scoreBoard = document.querySelector(".score");
 const startButton = document.querySelector(".gamestart-button");
 const highScoreBoard = document.querySelector(".highscore");
 const punch = document.querySelector(".punch");
+const difficulty = document.querySelector(".gamestart-difficulty");
 let lastHole;
 let lastScore = 0;
 let currentScore = 0;
 let highScore = 0;
+let min = 300;
+let max = 700;
 let timeUp = false;
+let isHard = false;
+let isRunning = false;
 let score = 0;
 
 function randomTime(min, max) {
@@ -27,7 +32,7 @@ function randomHole(holes) {
 }
 
 function peep() {
-  const time = randomTime(200, 1000);
+  const time = randomTime(min, max);
   const hole = randomHole(holes);
   hole.classList.add("up");
   setTimeout(() => {
@@ -37,6 +42,8 @@ function peep() {
 }
 
 function startGame() {
+  if (isRunning) return;
+  isRunning = !isRunning;
   score = 0;
   timeUp = false;
   scoreBoard.textContent = score;
@@ -51,10 +58,10 @@ function startGame() {
       scoreBoard.textContent = "0";
       highScoreBoard.textContent = highScore;
     }
-  }, 7000);
+  }, 10000);
   setTimeout(() => {
     scoreBoard.textContent = "0";
-  }, 7600);
+  }, 10600);
 }
 
 function bonk(e) {
@@ -72,4 +79,25 @@ function saveScoreLs(score) {
   localStorage.setItem("currentScore", score);
 }
 
+function changeDifficulty(e) {
+  isHard = !isHard;
+  if (!isHard) {
+    difficulty.textContent = "Difficulty : Normal";
+    min = 300;
+    max = 700;
+  } else {
+    difficulty.textContent = "Difficulty : Hard";
+    min = 100;
+    max = 500;
+  }
+}
+
 moles.forEach((mole) => mole.addEventListener("click", bonk));
+difficulty.addEventListener("click", changeDifficulty);
+
+function init() {
+  highScoreBoard.textContent = localStorage.getItem("highScore");
+  console.log(localStorage.getItem("highScore"));
+}
+
+init();
