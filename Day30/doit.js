@@ -3,6 +3,7 @@ const moles = document.querySelectorAll(".mole");
 const scoreBoard = document.querySelector(".score");
 const startButton = document.querySelector(".gamestart-button");
 const highScoreBoard = document.querySelector(".highscore");
+const punch = document.querySelector(".punch");
 let lastHole;
 let lastScore = 0;
 let currentScore = 0;
@@ -57,9 +58,12 @@ function startGame() {
 }
 
 function bonk(e) {
+  punch.currentTime = 0;
   if (!e.isTrusted) return;
   score++;
   scoreBoard.textContent = score;
+  punch.play();
+  punch.currentTime = 1;
   saveScoreLs(score);
   this.parentNode.classList.remove("up");
 }
