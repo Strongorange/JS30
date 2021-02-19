@@ -21,7 +21,7 @@ let isRunning = false;
 let score = 0;
 let scoreHard = 0;
 let duration = 10000;
-let duration2 = duration + 600;
+let duration2 = duration + 300;
 let remainTime;
 
 function randomTime(min, max) {
