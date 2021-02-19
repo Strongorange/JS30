@@ -9,13 +9,16 @@ const remainTimeBoard = document.querySelector(".gamestart-remain-time");
 let lastHole;
 let lastScore = 0;
 let currentScore = 0;
+let currentScoreHard = 0;
 let highScore = 0;
+let highScoreHard = 0;
 let min = 300;
 let max = 700;
 let timeUp = false;
 let isHard = false;
 let isRunning = false;
 let score = 0;
+let scoreHard = 0;
 let duration = 10000;
 let duration2 = duration + 600;
 let remainTime;
@@ -57,26 +60,16 @@ function startGame() {
   setTimeout(() => {
     timeUp = true;
     isRunning = !isRunning;
-    currentScore = localStorage.getItem("currentScore");
-    if (currentScore > highScore) {
-      localStorage.setItem("highScore", currentScore);
-      highScore = localStorage.getItem("highScore");
-      localStorage.setItem("currentScore", 0);
-      scoreBoard.textContent = "0";
-      highScoreBoard.textContent = highScore;
+    if (isHard) {
+      showHighScoreHard();
+    } else {
+      showHighScore();
     }
   }, duration);
 
   setTimeout(() => {
     scoreBoard.textContent = "0";
   }, duration2);
-
-  // setInterval(function showTimeLeft() {
-  //   if (remainTime === 0) return;
-  //   remainTime--;
-  //   remainTimeBoard.textContent = remainTime;
-  //   console.log("interval running");
-  // }, 1000);
 
   runShowTime();
 }
@@ -99,8 +92,38 @@ function bonk(e) {
   scoreBoard.textContent = score;
   punch.play();
   punch.currentTime = 1;
-  saveScoreLs(score);
+  if (isHard) {
+    saveScoreLsHard(score);
+  } else {
+    saveScoreLs(score);
+  }
   this.parentNode.classList.remove("up");
+}
+
+function showHighScoreHard() {
+  currentScoreHard = localStorage.getItem("currentScoreHard");
+  if (currentScoreHard > highScoreHard) {
+    localStorage.setItem("highScoreHard", currentScoreHard);
+    highScoreHard = localStorage.getItem("highScoreHard");
+    localStorage.setItem("currentScoreHard", 0);
+    scoreBoard.textContent = "0";
+    highScoreBoard.textContent = highScoreHard;
+  }
+}
+
+function showHighScore() {
+  currentScore = localStorage.getItem("currentScore");
+  if (currentScore > highScore) {
+    localStorage.setItem("highScore", currentScore);
+    highScore = localStorage.getItem("highScore");
+    localStorage.setItem("currentScore", 0);
+    scoreBoard.textContent = "0";
+    highScoreBoard.textContent = highScore;
+  }
+}
+
+function saveScoreLsHard(score) {
+  localStorage.setItem("currentScoreHard", score);
 }
 
 function saveScoreLs(score) {
@@ -111,10 +134,24 @@ function changeDifficulty(e) {
   isHard = !isHard;
   if (!isHard) {
     difficulty.textContent = "Difficulty : Normal";
+    difficulty.classList.remove("hard");
+    highScoreBoard.classList.remove("hard");
+    if (localStorage.getItem("highScore") === null) {
+      highScoreBoard.textContent = 0;
+    } else {
+      highScoreBoard.textContent = localStorage.getItem("highScore");
+    }
     min = 300;
     max = 700;
   } else {
-    difficulty.textContent = "Difficulty : Hard";
+    difficulty.innerHTML = `<i class="fas fa-fire-alt"></i> Difficulty : Hard <i class="fas fa-fire-alt"></i>`;
+    difficulty.classList.add("hard");
+    highScoreBoard.classList.add("hard");
+    if (localStorage.getItem("highScoreHard") === null) {
+      highScoreBoard.textContent = 0;
+    } else {
+      highScoreBoard.textContent = localStorage.getItem("highScoreHard");
+    }
     min = 100;
     max = 500;
   }

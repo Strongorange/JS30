@@ -37,6 +37,13 @@ h1 {
   border-radius: 1rem;
 }
 
+.highscore.hard {
+  background: rgba(255, 99, 72, 0.8);
+  padding: 0 3rem;
+  line-height: 1;
+  border-radius: 1rem;
+}
+
 .game {
   width: 600px;
   height: 400px;
@@ -112,7 +119,18 @@ h1 {
   font-weight: 700;
   background: transparent;
   border: none;
-  width: 300px;
+  width: 500px;
+  height: 60px;
+}
+
+.gamestart-difficulty.hard {
+  font-size: 5rem;
+  font-family: "Amatic SC", cursive;
+  font-weight: 700;
+  color: tomato;
+  background: transparent;
+  border: none;
+  width: 3500px;
   height: 60px;
 }
 
