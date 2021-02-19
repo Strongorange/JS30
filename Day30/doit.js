@@ -5,6 +5,7 @@ const startButton = document.querySelector(".gamestart-button");
 const highScoreBoard = document.querySelector(".highscore");
 const punch = document.querySelector(".punch");
 const difficulty = document.querySelector(".gamestart-difficulty");
+const remainTimeBoard = document.querySelector(".gamestart-remain-time");
 let lastHole;
 let lastScore = 0;
 let currentScore = 0;
@@ -15,6 +16,9 @@ let timeUp = false;
 let isHard = false;
 let isRunning = false;
 let score = 0;
+let duration = 10000;
+let duration2 = duration + 600;
+let remainTime;
 
 function randomTime(min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -46,10 +50,13 @@ function startGame() {
   isRunning = !isRunning;
   score = 0;
   timeUp = false;
+  remainTime = duration / 1000;
   scoreBoard.textContent = score;
+  remainTimeBoard.textContent = remainTime;
   peep();
   setTimeout(() => {
     timeUp = true;
+    isRunning = !isRunning;
     currentScore = localStorage.getItem("currentScore");
     if (currentScore > highScore) {
       localStorage.setItem("highScore", currentScore);
@@ -58,10 +65,31 @@ function startGame() {
       scoreBoard.textContent = "0";
       highScoreBoard.textContent = highScore;
     }
-  }, 10000);
+  }, duration);
+
   setTimeout(() => {
     scoreBoard.textContent = "0";
-  }, 10600);
+  }, duration2);
+
+  // setInterval(function showTimeLeft() {
+  //   if (remainTime === 0) return;
+  //   remainTime--;
+  //   remainTimeBoard.textContent = remainTime;
+  //   console.log("interval running");
+  // }, 1000);
+
+  runShowTime();
+}
+
+function runShowTime() {
+  setTimeout(function showTimeLeft() {
+    if (remainTime === 0) return;
+    remainTime--;
+    remainTimeBoard.textContent = remainTime;
+    if (remainTime > 0) {
+      runShowTime();
+    }
+  }, 1000);
 }
 
 function bonk(e) {
@@ -92,12 +120,12 @@ function changeDifficulty(e) {
   }
 }
 
-moles.forEach((mole) => mole.addEventListener("click", bonk));
-difficulty.addEventListener("click", changeDifficulty);
-
 function init() {
   highScoreBoard.textContent = localStorage.getItem("highScore");
   console.log(localStorage.getItem("highScore"));
 }
+
+moles.forEach((mole) => mole.addEventListener("click", bonk));
+difficulty.addEventListener("click", changeDifficulty);
 
 init();
