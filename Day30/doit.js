@@ -6,6 +6,7 @@ const highScoreBoard = document.querySelector(".highscore");
 const punch = document.querySelector(".punch");
 const difficulty = document.querySelector(".gamestart-difficulty");
 const remainTimeBoard = document.querySelector(".gamestart-remain-time");
+const html = document.querySelector("html");
 let lastHole;
 let lastScore = 0;
 let currentScore = 0;
@@ -136,6 +137,7 @@ function changeDifficulty(e) {
     difficulty.textContent = "Difficulty : Normal";
     difficulty.classList.remove("hard");
     highScoreBoard.classList.remove("hard");
+    html.classList.remove("hard");
     if (localStorage.getItem("highScore") === null) {
       highScoreBoard.textContent = 0;
     } else {
@@ -147,6 +149,7 @@ function changeDifficulty(e) {
     difficulty.innerHTML = `<i class="fas fa-fire-alt"></i> Difficulty : Hard <i class="fas fa-fire-alt"></i>`;
     difficulty.classList.add("hard");
     highScoreBoard.classList.add("hard");
+    html.classList.add("hard");
     if (localStorage.getItem("highScoreHard") === null) {
       highScoreBoard.textContent = 0;
     } else {
