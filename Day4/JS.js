@@ -94,11 +94,11 @@ const ordered = inventors.sort((a, b) => (a.year > b.year ? 1 : -1)); //이 방�
 console.table(ordered);
 // Array.prototype.reduce()
 // 4. How many years did all the inventors live all together?
-
 const totalYears = inventors.reduce((total, inventor) => {
   return total + (inventor.passed - inventor.year);
 }, 0);
 
+console.log("4");
 console.log(totalYears); //?????????????????????????????????가장 이해가 안 감 오늘의 공부
 
 // 5. Sort the inventors by years lived
