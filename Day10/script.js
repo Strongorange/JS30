@@ -2,6 +2,7 @@ const checkBoxes = document.querySelectorAll("input");
 let lastChecked;
 
 function handleClick(e) {
+  console.log(lastChecked);
   let isChecked = false;
   if (e.shiftKey && this.checked) {
     checkBoxes.forEach((checkBox) => {
@@ -17,7 +18,7 @@ function handleClick(e) {
     });
   }
   lastChecked = this;
-  console.log(`This is  ${lastChecked}`);
+  console.log(lastChecked);
 }
 
 checkBoxes.forEach((input) => input.addEventListener("click", handleClick));
