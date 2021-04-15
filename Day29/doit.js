@@ -10,7 +10,7 @@ function timer(seconds) {
   alarm.pause();
   alarm.currentTime = 0;
   const now = Date.now();
-  const then = now + seconds * 1000; //끝나는 시간
+  const then = now + seconds * 1000; //끝나는 시간, seconds의 단위에 1000을 곱해줘야 ms 단위로 변환된다
   const startTime = Math.round((then - now) / 1000);
 
   displayTime(startTime);

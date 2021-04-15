@@ -244,6 +244,7 @@
         sliderImages.forEach((sliderImage) => {
           const isAtHalf =
             window.scrollY + window.innerHeight - sliderImage.height / 2;
+          console.log(`This is ${sliderImage.height}`);
           const imageBottom = sliderImage.offsetTop + sliderImage.height;
           const isHalfShown = isAtHalf > sliderImage.offsetTop;
           const isNotScrolledPast = window.scrollY < imageBottom;
